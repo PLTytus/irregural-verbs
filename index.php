@@ -7,7 +7,11 @@
 		list($verbs[$i], $verbs[$j]) = [$verbs[$j], $verbs[$i]];
 	}
 
-	$verbs = array_slice($verbs, 0, 10);
+	$limit = isset($_GET["limit"]) ? (int)($_GET["limit"]) : 10;
+	if($limit < 10) $limit = 10;
+	if($limit > count($verbs)) $limit = count($verbs);
+
+	$verbs = array_slice($verbs, 0, $limit);
 
 ?>
 
@@ -22,7 +26,13 @@
 		<table>
 			<thead>
 				<tr>
-					<td></td>
+					<td colspan="4">
+						Verbs: <input id="limit" type="number" min="10" max="<?php echo count($verbs); ?>" value="<?php echo $limit; ?>">
+						<input type="button" value="Random" onclick="window.location.replace(location.origin+location.pathname+'?limit='+document.querySelector('#limit').value)">
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
 					<td>Infinitive</td>
 					<td>Simple Past</td>
 					<td>Past Participle</td>
