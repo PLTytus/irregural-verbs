@@ -11,6 +11,8 @@
 	if($limit < 10) $limit = 10;
 	if($limit > count($verbs)) $limit = count($verbs);
 
+	$max = count($verbs);
+
 	$verbs = array_slice($verbs, 0, $limit);
 
 ?>
@@ -20,14 +22,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Irregular verbs</title>
-		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="index.css?1">
 	</head>
 	<body>
 		<table>
 			<thead>
 				<tr>
 					<td colspan="4">
-						Verbs: <input id="limit" type="number" min="10" max="<?php echo count($verbs); ?>" value="<?php echo $limit; ?>">
+						Verbs: <input id="limit" type="number" min="10" max="<?php echo $max; ?>" value="<?php echo $limit; ?>">
 						<input type="button" value="Random" onclick="window.location.replace(location.origin+location.pathname+'?limit='+document.querySelector('#limit').value)">
 					</td>
 				</tr>
